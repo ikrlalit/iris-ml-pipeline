@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-ml-deployment
+  labels:
+    app: iris-ml
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: iris-ml
+  template:
+    metadata:
+      labels:
+        app: iris-ml
+    spec:
+      containers:
+      - name: iris-ml-container
+        image: iris-ml-api                  # This is the image you built locally
+        imagePullPolicy: IfNotPresent       # Avoid pulling from DockerHub
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+
