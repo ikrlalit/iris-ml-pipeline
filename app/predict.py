@@ -5,7 +5,7 @@ import joblib
 import numpy as np
 
 app = FastAPI()
-model = joblib.load("iris_model.pkl")
+model = joblib.load("artifacts/model.joblib")
 
 class IrisInput(BaseModel):
     sepal_length: float
